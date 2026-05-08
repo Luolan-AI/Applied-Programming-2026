@@ -1,0 +1,100 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.23.1",
+    "script_metadata_hash": null
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "9f07e65ef54d57d51971f2890f4b3e0a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"finding-and-reading-device-manuals\">Finding and Reading Device Manuals</h1></span><div style='display: flex;flex: 1;flex-direction: row;justify-content: center;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">by Raul C. S\u00eempetru @ <a href=\"https://www.nsquared.tf.fau.de/\" rel=\"noopener noreferrer\" target=\"_blank\">N\u00b2 lab</a></span></span></div><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">Welcome! As an engineer or researcher, knowing how to find and extract information from \ndevice manuals is a critical skill. In this exercise, you will:</span>\n<ol>\n<li>Visit a manufacturer's website to find a specific device manual</li>\n<li>Upload the manual to verify you found the correct one</li>\n<li>Extract specific information from the manual to answer questions</li>\n</ol>\n<span class=\"paragraph\">This helps develop your ability to navigate technical documentation and find important \nspecifications - essential skills for working with laboratory equipment.</span></span></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "5817117d0a647b430bbda9d256ae6ccf",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"ot-bioelettronica\">OT Bioelettronica</h2>\n<span class=\"paragraph\">For this exercise, we'll be working with equipment from <a href=\"https://otbioelettronica.it/\" rel=\"noopener noreferrer\" target=\"_blank\">OT Bioelettronica</a>, \na company that designs hardware and software for biomedical research, particularly specializing \nin electromyography (EMG) systems.</span>\n<span class=\"paragraph\">OT Bioelettronica produces various systems for recording and analyzing bioelectrical signals, \nincluding multi-channel amplifiers, electrode arrays, and specialized software for signal processing.</span></span><div style='display: flex;flex: 1;flex-direction: row;justify-content: center;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><img src='https://otbioelettronica.it/wp-content/uploads/2023/03/logo_white-2048x628.png' style='width: 300px;background-color: #000000' /></div><span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"your-task\">Your Task</h3>\n<span class=\"paragraph\">You need to find the user manual for their <strong>MuoviPro</strong> device. This manual contains \nessential information about device specifications, setup procedures, and operational guidelines.</span>\n<ol>\n<li>Visit <a href=\"https://otbioelettronica.it/\" rel=\"noopener noreferrer\" target=\"_blank\">OT Bioelettronica's website</a></li>\n<li>Navigate to find the user manual for the MuoviPro device</li>\n<li>Download the PDF manual</li>\n<li>Upload it below to verify you've found the correct document</li>\n</ol></span></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "cf271f55eb82289998d957621b7cf62a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "3a6ac516cd7b96dfad82fa5eada3a3df",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"upload-the-muovipro-user-manual\">Upload the MuoviPro User Manual</h2>\n<span class=\"paragraph\">After downloading the manual from the manufacturer's website, upload it here to verify\nyou've found the correct document.</span></span><marimo-ui-element object-id='vblA-0' random-id='63f7f831-5f33-0125-87f4-ea05f506e164'><marimo-file data-initial-value='[]' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Upload the MuoviPro manual PDF&lt;/span&gt;&lt;/span&gt;&quot;' data-filetypes='[]' data-multiple='false' data-kind='&quot;area&quot;' data-max_size='100000000'></marimo-file></marimo-ui-element><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">\u2705 <strong>Success!</strong> </span>\n<span class=\"paragraph\">You've found the correct manual!</span></span></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "82149cf13199ddbcbfdccc3c1bfba0e3",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><marimo-ui-element object-id='lEQa-0' random-id='f4cfd9bd-cb98-6289-95a1-4788e6ee2df3'><marimo-refresh data-initial-value='0' data-label='null' data-options='[1]' data-default-interval='1'></marimo-refresh></marimo-ui-element><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"understanding-device-specifications\">Understanding Device Specifications</h2>\n<span class=\"paragraph\">Now that you have the correct manual, it's time to explore it and find specific information.\nReview the manual carefully to answer the following questions about the MuoviPro device.</span></span><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"device-specification-questions\">Device Specification Questions</h3></span><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">Answer the following questions based on information in the manual:</span></span><marimo-ui-element object-id='lEQa-30' random-id='836c9b6f-bf67-2200-df53-1b30b55d9d34'><marimo-form data-initial-value='null' data-label='null' data-element-id='&quot;lEQa-29&quot;' data-loading='false' data-bordered='true' data-submit-button-label='&quot;Submit&quot;' data-submit-button-disabled='false' data-clear-on-submit='false' data-show-clear-button='true' data-clear-button-label='&quot;Clear&quot;' data-should-validate='false'><marimo-ui-element object-id='lEQa-29' random-id='06b836dc-549d-bc47-6980-23a5eaac4ce2'><marimo-dict data-initial-value='{&quot;q1&quot;:&quot;&quot;,&quot;q2&quot;:&quot;&quot;,&quot;q3&quot;:&quot;&quot;,&quot;q4&quot;:&quot;&quot;,&quot;q5&quot;:&quot;&quot;,&quot;q6&quot;:&quot;&quot;,&quot;q7&quot;:&quot;&quot;,&quot;q8&quot;:&quot;&quot;,&quot;q9&quot;:&quot;&quot;}' data-label='null' data-element-ids='{&quot;lEQa-20&quot;:&quot;q1&quot;,&quot;lEQa-21&quot;:&quot;q2&quot;,&quot;lEQa-22&quot;:&quot;q3&quot;,&quot;lEQa-23&quot;:&quot;q4&quot;,&quot;lEQa-24&quot;:&quot;q5&quot;,&quot;lEQa-25&quot;:&quot;q6&quot;,&quot;lEQa-26&quot;:&quot;q7&quot;,&quot;lEQa-27&quot;:&quot;q8&quot;,&quot;lEQa-28&quot;:&quot;q9&quot;}'><span class=\"markdown prose dark:prose-invert contents\"><ol>\n<li><marimo-ui-element object-id='lEQa-1' random-id='9b341f28-53b5-f500-f300-7320d33b5615'><marimo-text data-initial-value='&quot;&quot;' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;What is the maximum sampling frequency of the MuoviPro device in Hz?&lt;/span&gt;&lt;/span&gt;&quot;' data-placeholder='&quot;&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element></li>\n<li><marimo-ui-element object-id='lEQa-2' random-id='65cf8aac-e1d1-5b2e-bf89-3d7754d9cd7c'><marimo-text data-initial-value='&quot;&quot;' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;How many input channels does one MuoviPro device have?&lt;/span&gt;&lt;/span&gt;&quot;' data-placeholder='&quot;&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element></li>\n<li><marimo-ui-element object-id='lEQa-3' random-id='d732245f-7c28-15b6-e98b-d5cdf8069374'><marimo-text data-initial-value='&quot;&quot;' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;What other sensor does the MuoviPro device have besides EMG?&lt;/span&gt;&lt;/span&gt;&quot;' data-placeholder='&quot;&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element></li>\n<li><marimo-ui-element object-id='lEQa-4' random-id='0fbf8b81-6951-66a4-046c-45c012017a47'><marimo-text data-initial-value='&quot;&quot;' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;What is the battery life when transmitting data continuously in hours?&lt;/span&gt;&lt;/span&gt;&quot;' data-placeholder='&quot;&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element></li>\n<li><marimo-ui-element object-id='lEQa-5' random-id='645bf082-f942-a44b-15d1-925c5ef83baa'><marimo-text data-initial-value='&quot;&quot;' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;What wireless communication protocol does the device use?&lt;/span&gt;&lt;/span&gt;&quot;' data-placeholder='&quot;&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element></li>\n<li><marimo-ui-element object-id='lEQa-6' random-id='501e1284-233e-a4ee-ee0f-03dc2bc406ca'><marimo-text data-initial-value='&quot;&quot;' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;What is the resolution of the device in bits?&lt;/span&gt;&lt;/span&gt;&quot;' data-placeholder='&quot;&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element></li>\n<li><marimo-ui-element object-id='lEQa-7' random-id='6111c743-c4dc-152a-1046-9e7a0e89f4d1'><marimo-text data-initial-value='&quot;&quot;' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;What is the cut-off frequency of the low-pass filter in Hz?&lt;/span&gt;&lt;/span&gt;&quot;' data-placeholder='&quot;&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element></li>\n<li><marimo-ui-element object-id='lEQa-8' random-id='7dad324b-65a5-6bdb-7aa3-c9b31ec4ac9c'><marimo-text data-initial-value='&quot;&quot;' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;What is the cut-off frequency of the high-pass filter in Hz?&lt;/span&gt;&lt;/span&gt;&quot;' data-placeholder='&quot;&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element></li>\n<li><marimo-ui-element object-id='lEQa-9' random-id='427e78d8-7551-5168-6afb-ab4720913910'><marimo-text data-initial-value='&quot;&quot;' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Can you record and charge the device at the same time?&lt;/span&gt;&lt;/span&gt;&quot;' data-placeholder='&quot;&quot;' data-kind='&quot;text&quot;' data-full-width='false' data-disabled='false' data-debounce='true'></marimo-text></marimo-ui-element></li>\n</ol></span></marimo-dict></marimo-ui-element></marimo-form></marimo-ui-element></div></div></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "11ebeca2415c776f86ada1d68dd2912a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><marimo-ui-element object-id='lEQa-0' random-id='f4cfd9bd-cb98-6289-95a1-4788e6ee2df3'><marimo-refresh data-initial-value='0' data-label='null' data-options='[1]' data-default-interval='1'></marimo-refresh></marimo-ui-element><div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"your-score-99\">Your Score: 9/9</h3></span><span class=\"markdown prose dark:prose-invert contents\"><span class=\"paragraph\">\u2705 Question 1: Correct!</span>\n<span class=\"paragraph\">\u2705 Question 2: Correct!</span>\n<span class=\"paragraph\">\u2705 Question 3: Correct!</span>\n<span class=\"paragraph\">\u2705 Question 4: Correct!</span>\n<span class=\"paragraph\">\u2705 Question 5: Correct!</span>\n<span class=\"paragraph\">\u2705 Question 6: Correct!</span>\n<span class=\"paragraph\">\u2705 Question 7: Correct!</span>\n<span class=\"paragraph\">\u2705 Question 8: Correct!</span>\n<span class=\"paragraph\">\u2705 Question 9: Correct!</span></span></div></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "3a4ae8f38c18127bfe9cf55363347578",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"congratulations\">Congratulations!</h2>\n<span class=\"paragraph\">You've completed the exercise on finding and reading device manuals. You've practiced:</span>\n<ol>\n<li>Navigating a manufacturer's website to find documentation</li>\n<li>Downloading and verifying technical manuals</li>\n<li>Extracting specific technical specifications from documentation</li>\n</ol>\n<span class=\"paragraph\">These skills will serve you well throughout your career when working with laboratory equipment\nand other technical devices.</span>\n<h3 id=\"bonus\">Bonus</h3>\n<ul>\n<li>Share any interesting insights you found in the manual that weren't covered in the questions</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    }
+  ]
+}
