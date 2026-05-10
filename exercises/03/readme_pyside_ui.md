@@ -1,58 +1,60 @@
+# 练习 3 — PySide6 用户界面编程与嵌入式 Matplotlib
 # Exercise 3 — PySide6 UI Programming & Embedded Matplotlib
 
 ---
 
-## Overview
+## 概述 / Overview
 
+在这个练习中，你将学习如何使用 **PySide6** 构建 **桌面应用程序**，并将其与 Matplotlib 集成以进行信号可视化。
 In this exercise, you will learn how to build a **desktop application** using **PySide6** and integrate it with Matplotlib for signal visualization.
 
-This is a key transition in the course:
+这是课程中的一个关键转变 / This is a key transition in the course:
 
-* From **scripts → applications**
-* From **static plots → interactive UI**
-* From **sequential code → event-driven programming**
+* 从 **脚本 → 应用程序** / From **scripts → applications**
+* 从 **静态图表 → 交互式界面** / From **static plots → interactive UI**
+* 从 **顺序代码 → 事件驱动编程** / From **sequential code → event-driven programming**
 
-By the end, you should understand the basic building blocks of a graphical user interface:
+到最后，你应该理解图形用户界面的基本构成部分 / By the end, you should understand the basic building blocks of a graphical user interface:
 
-* windows
-* widgets
-* layouts
-* buttons
-* dropdowns
-* sliders
-* checkboxes
-* radio buttons
-* text inputs
-* tables
-* tabs
-* menus
-* dialogs
-* signals and slots
-* embedded plots
+* 窗口 / windows
+* 部件 / widgets
+* 布局 / layouts
+* 按钮 / buttons
+* 下拉菜单 / dropdowns
+* 滑块 / sliders
+* 复选框 / checkboxes
+* 单选按钮 / radio buttons
+* 文本输入 / text inputs
+* 表格 / tables
+* 选项卡 / tabs
+* 菜单 / menus
+* 对话框 / dialogs
+* 信号和槽 / signals and slots
+* 嵌入式图表 / embedded plots
 
 ---
 
-## Why GUI Programming?
+## 为什么要学习 GUI 编程？/ Why GUI Programming?
 
-So far, your programs usually:
+到目前为止，你的程序通常：/ So far, your programs usually:
 
-* run once
-* produce output
-* exit
+* 运行一次 / run once
+* 产生输出 / produce output
+* 退出 / exit
 
-Now we want:
+现在我们想要 / Now we want:
 
-* persistent applications
-* user interaction
-* dynamic updates
-* visual feedback
-* reusable interfaces
+* 持续运行的应用程序 / persistent applications
+* 用户交互 / user interaction
+* 动态更新 / dynamic updates
+* 视觉反馈 / visual feedback
+* 可重用的界面 / reusable interfaces
 
-A graphical user interface allows users to control a program without editing the source code.
+图形用户界面允许用户在不编辑源代码的情况下控制程序。/ A graphical user interface allows users to control a program without editing the source code.
 
-Example:
+示例 / Example:
 
-Instead of changing this manually:
+不是手动更改这个 / Instead of changing this manually:
 
 ```python
 channel = 3
@@ -60,33 +62,33 @@ signal_type = "RMS"
 plot_color = "red"
 ```
 
-we can let the user select these values with:
+我们可以让用户用以下方式选择这些值 / we can let the user select these values with:
 
-* a dropdown
-* a button
-* a slider
-* a checkbox
-
----
-
-## What is PySide6?
-
-PySide6 is the **official Python binding of Qt**, a powerful cross-platform UI framework.
-
-It provides:
-
-* **Widgets** → UI elements such as buttons, dropdowns, labels and sliders
-* **Layouts** → rules for arranging widgets
-* **Signals & Slots** → communication between UI elements and Python functions
-* **Event loop** → continuously listens for user interaction
+* 下拉菜单 / a dropdown
+* 按钮 / a button
+* 滑块 / a slider
+* 复选框 / a checkbox
 
 ---
 
-## Structure of a PySide6 Application
+## 什么是 PySide6？/ What is PySide6?
 
-Every PySide6 application has the same core structure.
+PySide6 是 **Qt 的官方 Python 绑定**，是一个强大的跨平台 UI 框架。/ PySide6 is the **official Python binding of Qt**, a powerful cross-platform UI framework.
 
-### 1. Import the required classes
+它提供 / It provides:
+
+* **部件（Widgets）** → UI 元素，如按钮、下拉菜单、标签和滑块 / **Widgets** → UI elements such as buttons, dropdowns, labels and sliders
+* **布局（Layouts）** → 排列部件的规则 / **Layouts** → rules for arranging widgets
+* **信号和槽（Signals & Slots）** → UI 元素和 Python 函数之间的通信 / **Signals & Slots** → communication between UI elements and Python functions
+* **事件循环（Event loop）** → 持续监听用户交互 / **Event loop** → continuously listens for user interaction
+
+---
+
+## PySide6 应用程序的结构 / Structure of a PySide6 Application
+
+每个 PySide6 应用程序都有相同的核心结构。/ Every PySide6 application has the same core structure.
+
+### 1. 导入所需的类 / Import the required classes
 
 ```python
 import sys
@@ -95,46 +97,46 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout
 
 ---
 
-### 2. Create the application
+### 2. 创建应用程序 / Create the application
 
 ```python
 app = QApplication(sys.argv)
 ```
 
-The application object:
+应用程序对象 / The application object:
 
-* manages the event loop
-* receives mouse and keyboard events
-* keeps the program alive
+* 管理事件循环 / manages the event loop
+* 接收鼠标和键盘事件 / receives mouse and keyboard events
+* 保持程序运行 / keeps the program alive
 
 ---
 
-### 3. Create the main window
+### 3. 创建主窗口 / Create the main window
 
 ```python
 window = QMainWindow()
 ```
 
-This is the **top-level container**.
+这是 **顶级容器** / This is the **top-level container**.
 
 ---
 
-### 4. Add a central widget
+### 4. 添加中央部件 / Add a central widget
 
 ```python
 central_widget = QWidget()
 window.setCentralWidget(central_widget)
 ```
 
-Important:
+重要 / Important:
 
-* `QMainWindow` cannot directly contain layouts
-* everything goes inside a `QWidget`
-* the `QWidget` receives the layout
+* `QMainWindow` 不能直接包含布局 / `QMainWindow` cannot directly contain layouts
+* 所有东西都要放在 `QWidget` 内 / everything goes inside a `QWidget`
+* `QWidget` 接收布局 / the `QWidget` receives the layout
 
 ---
 
-### 5. Create a layout
+### 5. 创建布局 / Create a layout
 
 ```python
 layout = QVBoxLayout()
@@ -143,18 +145,18 @@ central_widget.setLayout(layout)
 
 ---
 
-### 6. Show the window
+### 6. 显示窗口 / Show the window
 
 ```python
 window.show()
 app.exec()
 ```
 
-`app.exec()` starts the event loop.
+`app.exec()` 启动事件循环 / `app.exec()` starts the event loop.
 
 ---
 
-## Minimal PySide6 App
+## 最小 PySide6 应用 / Minimal PySide6 App
 
 ```python
 import sys
@@ -181,15 +183,15 @@ app.exec()
 
 ---
 
-## Layouts in Detail
+## 详细的布局 / Layouts in Detail
 
-Layouts control how widgets are arranged.
+布局控制部件的排列方式 / Layouts control how widgets are arranged.
 
 ---
 
-### QVBoxLayout — Vertical Layout
+### QVBoxLayout — 竖直布局 / QVBoxLayout — Vertical Layout
 
-Arranges widgets from top to bottom.
+从上到下排列部件 / Arranges widgets from top to bottom.
 
 ```text
 +------------------+
@@ -208,17 +210,17 @@ layout.addWidget(widget2)
 layout.addWidget(widget3)
 ```
 
-Typical use:
+常见使用场景 / Typical use:
 
-* main application structure
-* forms
-* stacked controls
+* 主应用程序结构 / main application structure
+* 表单 / forms
+* 堆栈控件 / stacked controls
 
 ---
 
-### QHBoxLayout — Horizontal Layout
+### QHBoxLayout — 水平布局 / QHBoxLayout — Horizontal Layout
 
-Arranges widgets side by side.
+从左到右排列部件 / Arranges widgets side by side.
 
 ```text
 +-------+-------+-------+
@@ -233,17 +235,17 @@ layout.addWidget(widget2)
 layout.addWidget(widget3)
 ```
 
-Typical use:
+常见使用场景 / Typical use:
 
-* toolbar rows
-* buttons next to each other
-* label + input pairs
+* 工具栏行 / toolbar rows
+* 相邻的按钮 / buttons next to each other
+* 标签 + 输入对 / label + input pairs
 
 ---
 
-### QGridLayout — Grid Layout
+### QGridLayout — 网格布局 / QGridLayout — Grid Layout
 
-Arranges widgets in rows and columns.
+按行、列排列部件 / Arranges widgets in rows and columns.
 
 ```text
 +----------+----------+
@@ -265,17 +267,17 @@ grid.addWidget(QLabel("Age:"), 1, 0)
 grid.addWidget(QLineEdit(), 1, 1)
 ```
 
-Typical use:
+常见使用场景 / Typical use:
 
-* settings dialogs
-* forms
-* structured input panels
+* 设置对话框 / settings dialogs
+* 表单 / forms
+* 结构化输入面板 / structured input panels
 
 ---
 
-### QFormLayout — Form Layout
+### QFormLayout — 表单布局 / QFormLayout — Form Layout
 
-Best for label-input forms.
+最适合标签-输入表单 / Best for label-input forms.
 
 ```python
 from PySide6.QtWidgets import QFormLayout, QLineEdit, QSpinBox
@@ -285,17 +287,17 @@ form.addRow("Patient name:", QLineEdit())
 form.addRow("Age:", QSpinBox())
 ```
 
-Typical use:
+常见使用场景 / Typical use:
 
-* parameter input
-* configuration panels
-* data entry
+* 参数输入 / parameter input
+* 配置面板 / configuration panels
+* 数据输入 / data entry
 
 ---
 
-### Nested Layouts
+### 嵌套布局 / Nested Layouts
 
-You can combine layouts.
+你可以组合布局 / You can combine layouts.
 
 ```text
 +------------------------------+
@@ -325,26 +327,26 @@ Standard pattern:
 
 ---
 
-# Widget Gallery
+# 部件库 / Widget Gallery
 
-The following examples show common widgets used in real applications.
+下面的例子演示了实际应用中使用的常见部件 / The following examples show common widgets used in real applications.
 
 ---
 
-## QLabel — Display Text
+## QLabel — 显示文本 / QLabel — Display Text
 
 ```python
 label = QLabel("Channel:")
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* titles
-* descriptions
-* status text
-* labels next to inputs
+* 标题 / titles
+* 描述文本 / descriptions
+* 状态文本 / status text
+* 输入旁的标签 / labels next to inputs
 
-You can update a label dynamically:
+你可以动态更新标签 / You can update a label dynamically:
 
 ```python
 label.setText("New value selected")
@@ -352,13 +354,13 @@ label.setText("New value selected")
 
 ---
 
-## QPushButton — Button
+## QPushButton — 按钮 / QPushButton — Button
 
 ```python
 button = QPushButton("Start")
 ```
 
-Connect the button to a function:
+将按钮连接到一个函数 / Connect the button to a function:
 
 ```python
 def start_measurement():
@@ -367,30 +369,30 @@ def start_measurement():
 button.clicked.connect(start_measurement)
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* starting an action
-* stopping an action
-* saving data
-* resetting a view
-* opening a file
+* 启动一个动作 / starting an action
+* 停止一个动作 / stopping an action
+* 保存数据 / saving data
+* 重置一个视图 / resetting a view
+* 打开一个文件 / opening a file
 
 ---
 
-## QComboBox — Dropdown
+## QComboBox — 下拉菜单 / QComboBox — Dropdown
 
 ```python
 combo = QComboBox()
 combo.addItems(["Original", "Filtered", "RMS"])
 ```
 
-Read the selected text:
+读取选中的文本 / Read the selected text:
 
 ```python
 selected = combo.currentText()
 ```
 
-React to changes:
+对变化做出反应 / React to changes:
 
 ```python
 def selection_changed():
@@ -399,16 +401,16 @@ def selection_changed():
 combo.currentIndexChanged.connect(selection_changed)
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* selecting a channel
-* selecting a signal type
-* selecting a mode
-* selecting a device
+* 选择一个通道 / selecting a channel
+* 选择一个信号类型 / selecting a signal type
+* 选择一个模式 / selecting a mode
+* 选择一个设备 / selecting a device
 
 ---
 
-## QSlider — Slider
+## QSlider — 滑块 / QSlider — Slider
 
 ```python
 from PySide6.QtCore import Qt
@@ -420,7 +422,7 @@ slider.setMaximum(100)
 slider.setValue(50)
 ```
 
-React to slider movement:
+对滑块移动做出反应 / React to slider movement:
 
 ```python
 def slider_changed(value):
@@ -429,17 +431,17 @@ def slider_changed(value):
 slider.valueChanged.connect(slider_changed)
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* amplitude
-* frequency
-* filter cutoff
-* zoom level
-* playback position
+* 幅度 / amplitude
+* 频率 / frequency
+* 滤波截断频率 / filter cutoff
+* 缩放级别 / zoom level
+* 播放位置 / playback position
 
 ---
 
-## QSpinBox — Integer Input
+## QSpinBox — 整数输入 / QSpinBox — Integer Input
 
 ```python
 from PySide6.QtWidgets import QSpinBox
@@ -450,7 +452,7 @@ spinbox.setMaximum(64)
 spinbox.setValue(1)
 ```
 
-React to value changes:
+对值的变化做出反应 / React to value changes:
 
 ```python
 def channel_changed(value):
@@ -459,16 +461,16 @@ def channel_changed(value):
 spinbox.valueChanged.connect(channel_changed)
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* channel number
-* repetitions
-* sample index
-* count values
+* 通道号 / channel number
+* 重复次数 / repetitions
+* 样本索引 / sample index
+* 计数值 / count values
 
 ---
 
-## QDoubleSpinBox — Decimal Input
+## QDoubleSpinBox — 小数输入 / QDoubleSpinBox — Decimal Input
 
 ```python
 from PySide6.QtWidgets import QDoubleSpinBox
@@ -480,16 +482,16 @@ cutoff_spinbox.setValue(20.0)
 cutoff_spinbox.setSuffix(" Hz")
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* frequency values
-* gain
-* thresholds
-* time constants
+* 频率值 / frequency values
+* 增益 / gain
+* 阈值 / thresholds
+* 时间常数 / time constants
 
 ---
 
-## QCheckBox — On/Off Option
+## QCheckBox — 复选框 / QCheckBox — On/Off Option
 
 ```python
 from PySide6.QtWidgets import QCheckBox
@@ -498,7 +500,7 @@ checkbox = QCheckBox("Show grid")
 checkbox.setChecked(True)
 ```
 
-React to changes:
+对变化做出反应 / React to changes:
 
 ```python
 def grid_changed(checked):
@@ -507,18 +509,18 @@ def grid_changed(checked):
 checkbox.toggled.connect(grid_changed)
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* show grid
-* enable filter
-* normalize signal
-* display markers
+* 显示网格 / show grid
+* 启用滤波器 / enable filter
+* 正一化信号 / normalize signal
+* 显示标记 / display markers
 
 ---
 
-## QRadioButton — Choose One Option
+## QRadioButton — 单选按钮 / QRadioButton — Choose One Option
 
-Radio buttons are useful when the user should choose **one option from a small group**.
+单选按钮在用户应算一个小事件组中一个选项时会会很有用 / Radio buttons are useful when the user should choose **one option from a small group**.
 
 ```python
 from PySide6.QtWidgets import QRadioButton, QButtonGroup
@@ -535,15 +537,15 @@ group.addButton(radio_filtered)
 group.addButton(radio_rms)
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* display mode
-* acquisition mode
-* analysis method
+* 显示模式 / display mode
+* 获取模式 / acquisition mode
+* 分析方法 / analysis method
 
 ---
 
-## QLineEdit — Single-Line Text Input
+## QLineEdit — 单行文本输入 / QLineEdit — Single-Line Text Input
 
 ```python
 from PySide6.QtWidgets import QLineEdit
@@ -552,13 +554,13 @@ name_input = QLineEdit()
 name_input.setPlaceholderText("Enter participant name")
 ```
 
-Read the text:
+读取文本 / Read the text:
 
 ```python
 name = name_input.text()
 ```
 
-React when the user presses Enter:
+当用户按下Enter键时做出反应 / React when the user presses Enter:
 
 ```python
 def name_entered():
@@ -567,16 +569,16 @@ def name_entered():
 name_input.returnPressed.connect(name_entered)
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* names
-* IDs
-* file names
-* short parameters
+* 名称 / names
+* ID / IDs
+* 文件名 / file names
+* 短参数 / short parameters
 
 ---
 
-## QTextEdit — Multi-Line Text Input
+## QTextEdit — 多行文本输入 / QTextEdit — Multi-Line Text Input
 
 ```python
 from PySide6.QtWidgets import QTextEdit
@@ -585,22 +587,22 @@ notes = QTextEdit()
 notes.setPlaceholderText("Write notes here...")
 ```
 
-Read the text:
+读取文本 / Read the text:
 
 ```python
 text = notes.toPlainText()
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* comments
-* experiment notes
-* logs
-* descriptions
+* 评论 / comments
+* 实验笔记 / experiment notes
+* 日志 / logs
+* 描述文本 / descriptions
 
 ---
 
-## QListWidget — Simple List
+## QListWidget — 简单列表 / QListWidget — Simple List
 
 ```python
 from PySide6.QtWidgets import QListWidget
@@ -609,7 +611,7 @@ list_widget = QListWidget()
 list_widget.addItems(["Trial 1", "Trial 2", "Trial 3"])
 ```
 
-React to selection:
+对选择做出反应 / React to selection:
 
 ```python
 def trial_selected():
@@ -620,16 +622,16 @@ def trial_selected():
 list_widget.currentItemChanged.connect(trial_selected)
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* trial lists
-* file lists
-* selected channels
-* measurement sessions
+* 试验列表 / trial lists
+* 文件列表 / file lists
+* 选择的通道 / selected channels
+* 测量会话 / measurement sessions
 
 ---
 
-## QTableWidget — Table
+## QTableWidget — 表格 / QTableWidget — Table
 
 ```python
 from PySide6.QtWidgets import QTableWidget, QTableWidgetItem
@@ -643,16 +645,16 @@ table.setItem(0, 0, QTableWidgetItem("1"))
 table.setItem(0, 1, QTableWidgetItem("0.24"))
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* measurement results
-* channel values
-* configuration tables
-* summary statistics
+* 测量结果 / measurement results
+* 通道值 / channel values
+* 配置表 / configuration tables
+* 汇总统计 / summary statistics
 
 ---
 
-## QProgressBar — Progress Indicator
+## QProgressBar — 进度指示器 / QProgressBar — Progress Indicator
 
 ```python
 from PySide6.QtWidgets import QProgressBar
@@ -663,16 +665,16 @@ progress.setMaximum(100)
 progress.setValue(25)
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* loading data
-* processing signals
-* recording progress
-* export progress
+* 加载数据 / loading data
+* 处理信号 / processing signals
+* 记录进度 / recording progress
+* 导出进度 / export progress
 
 ---
 
-## QTabWidget — Tabs
+## QTabWidget — 选项卡 / QTabWidget — Tabs
 
 ```python
 from PySide6.QtWidgets import QTabWidget, QWidget, QVBoxLayout, QLabel
@@ -693,16 +695,16 @@ tabs.addTab(page1, "Plot")
 tabs.addTab(page2, "Settings")
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* separating views
-* settings pages
-* plots vs results
-* simple multi-page applications
+* 分离视图 / separating views
+* 设置页面 / settings pages
+* 图表对比结果 / plots vs results
+* 简单多页应用 / simple multi-page applications
 
 ---
 
-## QMessageBox — Dialog Window
+## QMessageBox — 对话框窗口 / QMessageBox — Dialog Window
 
 ```python
 from PySide6.QtWidgets import QMessageBox
@@ -710,16 +712,16 @@ from PySide6.QtWidgets import QMessageBox
 QMessageBox.information(window, "Info", "Data saved successfully.")
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* warnings
-* errors
-* confirmations
-* short feedback
+* 警告 / warnings
+* 错误 / errors
+* 确认 / confirmations
+* 短反馈 / short feedback
 
 ---
 
-## QFileDialog — Open or Save Files
+## QFileDialog — 打开或保存文件 / QFileDialog — Open or Save Files
 
 ```python
 from PySide6.QtWidgets import QFileDialog
@@ -735,62 +737,62 @@ if filename:
     print(filename)
 ```
 
-Useful for:
+有用于 / Useful for:
 
-* opening CSV files
-* loading signal data
-* saving results
-* exporting plots
+* 打开 CSV 文件 / opening CSV files
+* 加载信号数据 / loading signal data
+* 保存结果 / saving results
+* 导出图表 / exporting plots
 
 ---
 
-# Signals and Slots
+# 信号和槽 / Signals and Slots
 
-This is the most important concept in GUI programming.
+这是 GUI 编程中最重要的概念 / This is the most important concept in GUI programming.
 
-Instead of calling functions directly:
+而不是直接调用函数 / Instead of calling functions directly:
 
 ```python
 do_something()
 ```
 
-we connect events to functions:
+我们连接事件到函数 / we connect events to functions:
 
 ```python
 button.clicked.connect(do_something)
 ```
 
-Meaning:
+含义 / Meaning:
 
-> When this event happens, execute this function.
+> 当这个事件发生时，执行这个函数 / When this event happens, execute this function.
 
 ---
 
-## Signals vs Slots
+## 信号对比槽 / Signals vs Slots
 
-| Concept | Meaning | Example |
+| 榀念 / Concept | 含义 / Meaning | 例子 / Example |
 | ------- | ------- | ------- |
-| Signal | Something happened | `button.clicked` |
-| Slot | Function that reacts | `update_plot` |
+| 信号 / Signal | ሴ查面发生了什么 / Something happened | button.clicked |
+| 槽 / Slot | 应对的函数 / Function that reacts | update_plot |
 
 ---
 
-## Common Signals
+## 常见的信号 / Common Signals
 
-| Widget | Common signal | Meaning |
+| 部件 / Widget | 信号 / Common signal | 含义 / Meaning |
 | ------ | ------------- | ------- |
-| `QPushButton` | `clicked` | Button was clicked |
-| `QComboBox` | `currentIndexChanged` | Selection changed |
-| `QSlider` | `valueChanged` | Slider moved |
-| `QSpinBox` | `valueChanged` | Number changed |
-| `QCheckBox` | `toggled` | Checkbox changed |
-| `QLineEdit` | `textChanged` | Text changed |
-| `QLineEdit` | `returnPressed` | Enter was pressed |
-| `QListWidget` | `currentItemChanged` | Selected item changed |
+| QPushButton | clicked | 按钮被点击 / Button was clicked |
+| QComboBox | currentIndexChanged | 选择设改 / Selection changed |
+| QSlider | valueChanged | 滑块被移动 / Slider moved |
+| QSpinBox | valueChanged | 整数设改 / Number changed |
+| QCheckBox | toggled | 复选框变化 / Checkbox changed |
+| QLineEdit | textChanged | 文本变化 / Text changed |
+| QLineEdit | returnPressed | Enter键被按下 / Enter was pressed |
+| QListWidget | currentItemChanged | 选中项变化 / Selected item changed |
 
 ---
 
-## Multiple Signals Can Trigger the Same Function
+## 多个信号可以触发同一个函数 / Multiple Signals Can Trigger the Same Function
 
 ```python
 channel_combo.currentIndexChanged.connect(update_plot)
@@ -799,61 +801,61 @@ amplitude_slider.valueChanged.connect(update_plot)
 grid_checkbox.toggled.connect(update_plot)
 ```
 
-This is powerful because:
+这很强大，因为 / This is powerful because:
 
-* the UI can change in many ways
-* the plot update logic is written only once
-* the program remains easier to maintain
+* UI 可以以许多方式变化 / the UI can change in many ways
+* 图表更新逻辑只写一次 / the plot update logic is written only once
+* 程序更易于维持 / the program remains easier to maintain
 
 ---
 
-## Important Mental Model
+## 重要的思维模型 / Important Mental Model
 
-GUI code works like this:
+GUI 代码这样工作 / GUI code works like this:
 
 ```text
-WAIT → EVENT → FUNCTION → UPDATE UI
+WAIT -> EVENT -> FUNCTION -> UPDATE UI
 ```
 
-Not like this:
+而不是这样 / Not like this:
 
 ```text
-RUN → FINISH
+RUN -> FINISH
 ```
 
 ---
 
-# Event-Driven Programming
+# 事件驱动编程 / Event-Driven Programming
 
-Unlike normal scripts, GUI code does not simply run once from top to bottom.
+不类似于普通脚本，GUI 代码不是简单从上到下运行一次 / Unlike normal scripts, GUI code does not simply run once from top to bottom.
 
-Instead:
+相反 / Instead:
 
-1. the application starts
-2. the window appears
-3. the program waits
-4. the user interacts
-5. a signal is emitted
-6. a connected function runs
-7. the UI updates
-8. the program waits again
+1. 应用程序启动 / the application starts
+2. 窗口出现 / the window appears
+3. 程序等待 / the program waits
+4. 用户互动 / the user interacts
+5. 信号被发出 / a signal is emitted
+6. 连接的函数事棋 / a connected function runs
+7. UI 更新 / the UI updates
+8. 程序再次等待 / the program waits again
 
-Examples of events:
+事件案例 / Examples of events:
 
-* button click
-* dropdown change
-* slider movement
-* checkbox toggle
-* text input
-* file selection
+* 按钮点击 / button click
+* 下拉菜单修改 / dropdown change
+* 滑块移动 / slider movement
+* 复选框切换 / checkbox toggle
+* 文本输入 / text input
+* 文件选择 / file selection
 
 ---
 
-# Integrating Matplotlib into PySide6
+# 在 PySide6 中嵌入 Matplotlib / Integrating Matplotlib into PySide6
 
-Normally, Matplotlib opens its own window.
+通常 Matplotlib 会打开自己的窗口 / Normally, Matplotlib opens its own window.
 
-In this exercise, we embed the plot into the PySide6 application.
+在这个练习中，我们将图表嵌入到 PySide6 应用程序中 / In this exercise, we embed the plot into the PySide6 application.
 
 ```python
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
@@ -862,7 +864,7 @@ from matplotlib.figure import Figure
 
 ---
 
-## Setup
+## 设置 / Setup
 
 ```python
 fig = Figure()
@@ -870,7 +872,7 @@ canvas = FigureCanvas(fig)
 ax = fig.add_subplot(111)
 ```
 
-Add the canvas to a layout:
+将画布添加到布局 / Add the canvas to a layout:
 
 ```python
 layout.addWidget(canvas)
@@ -878,7 +880,7 @@ layout.addWidget(canvas)
 
 ---
 
-## Updating the Plot
+## 更新图表 / Updating the Plot
 
 ```python
 ax.clear()
@@ -886,17 +888,17 @@ ax.plot(x, y)
 canvas.draw()
 ```
 
-Important:
+重要 / Important:
 
-* `ax.clear()` removes the old plot
-* `ax.plot(x, y)` draws the new plot
-* `canvas.draw()` updates the visible UI
+* ax.clear() 删除旧图表 / removes the old plot
+* ax.plot(x, y) 绘制新图表 / draws the new plot
+* canvas.draw() 更新可视UI / updates the visible UI
 
 ---
 
-# Mini Examples for Class Demonstration
+# 小示例 — 现板演示 / Mini Examples for Class Demonstration
 
-The following examples are intentionally small. They are useful for live coding before building the full application.
+下面的示例作来意非常效。它们对于实时辞手在构建完整应用是有用的 / The following examples are intentionally small. They are useful for live coding before building the full application.
 
 ---
 
@@ -1455,45 +1457,45 @@ app.exec()
 
 ---
 
-# Your Task in This Exercise
+# 你的任务 / Your Task in This Exercise
 
-You will implement the UI by completing the TODOs.
-
----
-
-## Basic Task
-
-### 1. Window Setup
-
-* Set the window title
-* Set the window size
+你将学会不断完成 TODO 部分来实现界面 / You will implement the UI by completing the TODOs.
 
 ---
 
-### 2. Central Widget
+## 基本任务 / Basic Task
 
-* Create a `QWidget`
-* Assign it using `setCentralWidget()`
+### 1. 窗口设置 / Window Setup
 
----
-
-### 3. Layouts
-
-Create:
-
-* `QVBoxLayout` → main layout
-* `QHBoxLayout` → control layout
+* 设置窗口标题 / Set the window title
+* 设置窗口大小 / Set the window size
 
 ---
 
-### 4. Channel Selection
+### 2. 中央部件 / Central Widget
 
-Create:
+* 创建一个 QWidget / Create a QWidget
+* 用 setCentralWidget() 绑定 / Assign it using setCentralWidget()
 
-* `QLabel("Channel:")`
-* `QComboBox`
+---
 
-Fill the dropdown with:
+### 3. 布局 / Layouts
+
+创建 / Create:
+
+* QVBoxLayout → 主布局 / main layout
+* QHBoxLayout → 控件布局 / control layout
+
+---
+
+### 4. 通道选择 / Channel Selection
+
+创建 / Create:
+
+* QLabel("Channel:")
+* QComboBox()
+
+用以下内容填充下拉菜单 / Fill the dropdown with:
 
 ```text
 Channel 1, Channel 2, Channel 3, ...
@@ -1501,9 +1503,9 @@ Channel 1, Channel 2, Channel 3, ...
 
 ---
 
-### 5. Signal Selection
+### 5. 信号类型选择 / Signal Selection
 
-Create a dropdown with:
+用以下内容的下拉菜单 / Create a dropdown with:
 
 ```text
 Original, Filtered, RMS
@@ -1511,9 +1513,9 @@ Original, Filtered, RMS
 
 ---
 
-### 6. Button
+### 6. 按钮 / Button
 
-Create:
+创建 / Create:
 
 ```python
 QPushButton("Change Color")
@@ -1521,28 +1523,28 @@ QPushButton("Change Color")
 
 ---
 
-### 7. Layout Assembly
+### 7. 布局组成 / Layout Assembly
 
-* Add all controls to the horizontal layout
-* Add the horizontal layout to the vertical layout
-
----
-
-### 8. Matplotlib Integration
-
-Create:
-
-* `Figure`
-* `FigureCanvas`
-* `Axes`
-
-Add the canvas to the layout.
+* 将所有控件添加到水平布局 / Add all controls to the horizontal layout
+* 将水平布局添加到竖直布局 / Add the horizontal layout to the vertical layout
 
 ---
 
-### 9. Connect Signals
+### 8. Matplotlib 集成 / Matplotlib Integration
 
-Connect:
+创建 / Create:
+
+* Figure
+* FigureCanvas
+* Axes
+
+将画布添加到布局 / Add the canvas to the layout.
+
+---
+
+### 9. 连接信号 / Connect Signals
+
+连接 / Connect:
 
 ```python
 channel_combo.currentIndexChanged.connect(update_plot)
@@ -1552,27 +1554,27 @@ color_button.clicked.connect(change_color)
 
 ---
 
-### 10. Initial Plot
+### 10. 初始图表 / Initial Plot
 
-Call:
+调用 / Call:
 
 ```python
 update_plot()
 ```
 
-once at the end of the setup.
+一次，在设置的最后 / once at the end of the setup.
 
 ---
 
-# Optional Extension Tasks
+# 可选的扩展任务 / Optional Extension Tasks
 
-Students who finish early can add more widgets.
+互成綂整的学生可以下加更多部件 / Students who finish early can add more widgets.
 
 ---
 
-## Extension 1 — Add a Slider
+## 扩展 1 — 添加滑块 / Extension 1 — Add a Slider
 
-Add an amplitude slider:
+添加幅度滑块 / Add an amplitude slider:
 
 ```python
 amplitude_slider = QSlider(Qt.Horizontal)
@@ -1581,32 +1583,32 @@ amplitude_slider.setMaximum(100)
 amplitude_slider.setValue(50)
 ```
 
-Connect it to:
+连接到 / Connect it to:
 
 ```python
 amplitude_slider.valueChanged.connect(update_plot)
 ```
 
-Use the slider value to scale the signal amplitude.
+使用滑块值来比例伸缩信号幅度 / Use the slider value to scale the signal amplitude.
 
 ---
 
-## Extension 2 — Add a Checkbox
+## 扩展 2 — 添加复选框 / Extension 2 — Add a Checkbox
 
-Add a checkbox:
+添加复选框 / Add a checkbox:
 
 ```python
 grid_checkbox = QCheckBox("Show grid")
 grid_checkbox.setChecked(True)
 ```
 
-Connect it to:
+连接到 / Connect it to:
 
 ```python
 grid_checkbox.toggled.connect(update_plot)
 ```
 
-Use it inside `update_plot()`:
+在 update_plot() 内部使用它 / Use it inside update_plot():
 
 ```python
 ax.grid(grid_checkbox.isChecked())
@@ -1614,9 +1616,9 @@ ax.grid(grid_checkbox.isChecked())
 
 ---
 
-## Extension 3 — Add a Frequency Spin Box
+## 扩展 3 — 添加频率旋转框 / Extension 3 — Add a Frequency Spin Box
 
-Add:
+添加 / Add:
 
 ```python
 frequency_spinbox = QDoubleSpinBox()
@@ -1626,19 +1628,19 @@ frequency_spinbox.setValue(1.0)
 frequency_spinbox.setSuffix(" Hz")
 ```
 
-Use this value to change the plotted signal frequency.
+使用此值改变已绘制信号的频率 / Use this value to change the plotted signal frequency.
 
 ---
 
-## Extension 4 — Add a Reset Button
+## 扩展 4 — 添加重置按钮 / Extension 4 — Add a Reset Button
 
-Add:
+添加 / Add:
 
 ```python
 reset_button = QPushButton("Reset")
 ```
 
-Then create:
+然后创建 / Then create:
 
 ```python
 def reset_controls():
@@ -1647,7 +1649,7 @@ def reset_controls():
     amplitude_slider.setValue(50)
 ```
 
-Connect:
+连接 / Connect:
 
 ```python
 reset_button.clicked.connect(reset_controls)
@@ -1655,15 +1657,15 @@ reset_button.clicked.connect(reset_controls)
 
 ---
 
-## Extension 5 — Add a Status Label
+## 扩展 5 — 添加状态标签 / Extension 5 — Add a Status Label
 
-Add a label at the bottom:
+在下方添加一个标签 / Add a label at the bottom:
 
 ```python
 status_label = QLabel("Ready")
 ```
 
-Update it whenever something changes:
+每当有所改变时更新它 / Update it whenever something changes:
 
 ```python
 status_label.setText("Plot updated")
@@ -1671,13 +1673,13 @@ status_label.setText("Plot updated")
 
 ---
 
-## Extension 6 — Add Tabs
+## 扩展 6 — 添加选项卡 / Extension 6 — Add Tabs
 
-Create tabs for:
+为以下部分添加选项卡 / Create tabs for:
 
-* Plot
-* Settings
-* Results
+* 图表 / Plot
+* 设置 / Settings
+* 结果 / Results
 
 ```python
 tabs = QTabWidget()
@@ -1688,13 +1690,13 @@ tabs.addTab(results_page, "Results")
 
 ---
 
-## Extension 7 — Add a Table
+## 扩展 7 — 添加表格 / Extension 7 — Add a Table
 
-Use a table to display calculated values:
+使用表格来散布计算值 / Use a table to display calculated values:
 
-* channel number
-* mean
-* RMS
+* 通道号 / channel number
+* 平均值 / mean
+* RMS / RMS
 
 ```python
 table = QTableWidget()
@@ -1705,9 +1707,9 @@ table.setHorizontalHeaderLabels(["Channel", "Mean", "RMS"])
 
 ---
 
-## Extension 8 — Add a File Dialog
+## 扩展 8 — 添加文件对话框 / Extension 8 — Add a File Dialog
 
-Add a button that opens a file dialog:
+添加一个打开文件对话框的按钮 / Add a button that opens a file dialog:
 
 ```python
 filename, _ = QFileDialog.getOpenFileName(
@@ -1720,47 +1722,48 @@ filename, _ = QFileDialog.getOpenFileName(
 
 ---
 
-# Suggested Teaching Sequence
+# 建议的教学顺序 / Suggested Teaching Sequence
 
-For a 90-minute lesson:
+对于 90 分钟的课程 / For a 90-minute lesson:
 
-| Time | Topic |
+| 时间 / Time | 标简 / Topic |
 | ---- | ----- |
-| 0–10 min | Why GUI programming? Scripts vs applications |
-| 10–20 min | Minimal PySide6 application |
-| 20–35 min | Layouts: vertical, horizontal, grid |
-| 35–50 min | Buttons, labels, dropdowns, signals and slots |
-| 50–65 min | Sliders, checkboxes, spin boxes |
-| 65–80 min | Embedded Matplotlib plot |
-| 80–90 min | Extension ideas and student experimentation |
+| 0–10 分 / min | 为什么要 GUI 编程？脚本对比应用 / Why GUI programming? Scripts vs applications |
+| 10–20 分 / min | 最小 PySide6 应用 / Minimal PySide6 application |
+| 20–35 分 / min | 布局：竖直、水平、网格 / Layouts: vertical, horizontal, grid |
+| 35–50 分 / min | 按钮、标签、下拉菜单、信号和槽 / Buttons, labels, dropdowns, signals and slots |
+| 50–65 分 / min | 滑块、复选框、旋转框 / Sliders, checkboxes, spin boxes |
+| 65–80 分 / min | 嵌入式 Matplotlib 图表 / Embedded Matplotlib plot |
+| 80–90 分 / min | 扩展椀法和学生实验 / Extension ideas and student experimentation |
 
-For a shorter lesson, focus only on:
 
-1. minimal app
-2. layouts
-3. button
-4. dropdown
-5. embedded plot
+对于较短的课程，仅专注于 / For a shorter lesson, focus only on:
 
----
-
-# Common Mistakes
-
-## Mistake 1 — Forgetting `app.exec()`
-
-Without this, the window may open and immediately close.
+1. 最小应用 / minimal app
+2. 布局 / layouts
+3. 按钮 / button
+4. 下拉菜单 / dropdown
+5. 嵌入式图表 / embedded plot
 
 ---
 
-## Mistake 2 — Adding a Layout Directly to `QMainWindow`
+# 常见错误 / Common Mistakes
 
-Wrong:
+## 错误 1 — 忘记 app.exec() / Mistake 1 — Forgetting app.exec()
+
+没有这个，窗口可能会打开后立即关闭Without this, the window may open and immediately close.
+
+---
+
+## 错误 2 — 直接添加布局到 QMainWindow / Mistake 2 — Adding a Layout Directly to QMainWindow
+
+错误 / Wrong:
 
 ```python
 window.setLayout(layout)
 ```
 
-Correct:
+正确 / Correct:
 
 ```python
 central_widget = QWidget()
@@ -1770,28 +1773,28 @@ central_widget.setLayout(layout)
 
 ---
 
-## Mistake 3 — Calling the Function Instead of Connecting It
+## 错误 3 — 调用函数而非连接扇 / Mistake 3 — Calling the Function Instead of Connecting It
 
-Wrong:
+错误 / Wrong:
 
 ```python
 button.clicked.connect(update_plot())
 ```
 
-Correct:
+正确 / Correct:
 
 ```python
 button.clicked.connect(update_plot)
 ```
 
-The first version calls the function immediately.
+第一种写法会立即调用函数。第二种写法是将函数连接到按钮点击。The first version calls the function immediately.
 The second version connects the function to the button click.
 
 ---
 
-## Mistake 4 — Forgetting `canvas.draw()`
+## 错误 4 — 忘记 canvas.draw() / Mistake 4 — Forgetting canvas.draw()
 
-If the plot does not update, check whether you called:
+如果图表不更新，检查你是否调用了 / If the plot does not update, check whether you called:
 
 ```python
 canvas.draw()
@@ -1799,17 +1802,17 @@ canvas.draw()
 
 ---
 
-## Mistake 5 — Using Local Variables That Are Needed Later
+## 错误 5 — 使用本地变量候后应求 / Mistake 5 — Using Local Variables That Are Needed Later
 
-If a widget is needed in another method, store it as `self.widget_name`.
+如果一个部件之后需要在另一个方法中使用，将它存保为 self.部件名 / If a widget is needed in another method, store it as self.widget_name.
 
-Example:
+示例 / Example:
 
 ```python
 self.channel_combo = QComboBox()
 ```
 
-instead of:
+而非 / instead of:
 
 ```python
 channel_combo = QComboBox()
@@ -1817,18 +1820,18 @@ channel_combo = QComboBox()
 
 ---
 
-# Key Takeaways
+# 关键要点 / Key Takeaways
 
-* A GUI application stays open and waits for user interaction.
-* PySide6 applications are event-driven.
-* Widgets are the visible UI elements.
-* Layouts define how widgets are arranged.
-* Signals and slots connect user actions to Python functions.
-* Matplotlib plots can be embedded directly into PySide6 applications.
-* Small widgets can be combined into powerful applications.
+* GUI 应用程序保持打开並等待用户交互 / A GUI application stays open and waits for user interaction.
+* PySide6 应用是事件驱动的 / PySide6 applications are event-driven.
+* 部件是可见的 UI 元素 / Widgets are the visible UI elements.
+* 布局定义部件的排列方式 / Layouts define how widgets are arranged.
+* 信号和槽将用户动作连接到 Python 函数 / Signals and slots connect user actions to Python functions.
+* Matplotlib 图表可以直接嵌入 PySide6 应用 / Matplotlib plots can be embedded directly into PySide6 applications.
+* 小部件可以组合成强大的应用 / Small widgets can be combined into powerful applications.
 
-Most important mental model:
+最重要的思维模型 / Most important mental model:
 
 ```text
-WAIT → EVENT → FUNCTION → UPDATE UI
+WAIT -> EVENT -> FUNCTION -> UPDATE UI
 ```
