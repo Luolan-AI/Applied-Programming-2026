@@ -46,20 +46,50 @@ class VisPyPlotWidget(QWidget):
         layout.addWidget(self.canvas.native)
 
     def update_plot(self, x, y):
+        # 将输入数据转换为 float 类型的 numpy 数组
+        # Convert input data to float numpy arrays
         x = np.asarray(x, dtype=float)
         y = np.asarray(y, dtype=float)
 
         # TODO 1:
-        # Combine x and y into an (N, 2) position array.
-        pos = None
+        # 中文：将 x 和 y 合并成一个 (N, 2) 的位置数组
+        # 例如：pos = np.column_stack([x, y])
+        #
+        # English: Combine x and y into an (N, 2) position array.
+        # Example: pos = np.column_stack([x, y])
+        pos = np.column_stack([x, y])
 
         # TODO 2:
-        # Update the line data with the new positions.
+        # 中文：用新的位置数据更新线条的数据
+        # 语法：self.line.set_data(pos)
+        #
+        # English: Update the line data with the new positions.
+        # Syntax: self.line.set_data(pos)
 
+        # 计算 y 轴的填充量（为了更好的可视化范围）
+        # Calculate y-axis padding for better visualization
+        self.line.set_data(pos)
         y_pad = max(0.1, 0.1 * (y.max() - y.min() + 1e-9))
 
         # TODO 3:
-        # Update the camera range so the current data window is visible.
+        # 中文：更新摄像机的范围，使当前数据窗口可见
+        # 使用：
+        # - x 的最小值和最大值
+        # - y 的最小值和最大值（加上填充）
+        # 语法：self.view.camera.set_range(
+        #         x=(x.min(), x.max()),
+        #         y=(y.min() - y_pad, y.max() + y_pad)
+        #       )
+        #
+        # English: Update the camera range so the current data window is visible.
         # Use:
         # - x min/max
         # - y min/max with padding
+        # Syntax: self.view.camera.set_range(
+        #           x=(x.min(), x.max()),
+        #           y=(y.min() - y_pad, y.max() + y_pad)
+        #         )
+        self.view.camera.set_range(
+                 x=(x.min(), x.max()),
+                 y=(y.min() - y_pad, y.max() + y_pad)
+               )

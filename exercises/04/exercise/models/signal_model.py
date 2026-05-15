@@ -3,8 +3,12 @@ import numpy as np
 
 class SignalModel:
     """
+    中文：模型类，负责生成和提供信号数据。
+    在本练习中，信号在本地模拟生成。
+    稍后，在最终项目中，这个角色可以被替换或扩展为基于 TCP 的模型。
+    
+    English:
     Model class responsible for creating and serving signal data.
-
     In this exercise, the signal is simulated locally.
     Later, this role can be replaced or extended by a TCP-based model.
     """

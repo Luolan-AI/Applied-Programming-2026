@@ -7,18 +7,24 @@ from viewmodels.mainViewModel import MainViewModel
 
 
 def main():
+    # 创建 Qt 应用对象
+    # Create Qt application object
     app = QApplication(sys.argv)
 
     # TODO 1:
-    # Create the ViewModel object.
-    view_model = None
+    # 中文：创建 MainViewModel 对象
+    # English: Create the ViewModel object.
+    view_model = MainViewModel()
 
     # TODO 2:
-    # Create the MainView and pass the ViewModel into it.
-    view = None
+    # 中文：创建 MainView 对象，并将 ViewModel 传入其中
+    # English: Create the MainView and pass the ViewModel into it.
+    view = MainView(view_model)
 
     # TODO 3:
-    # Show the window.
+    # 中文：显示窗口（调用 show() 方法）
+    # English: Show the window.
+    view.show()
 
     sys.exit(app.exec())
 
